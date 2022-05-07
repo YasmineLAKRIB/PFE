@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,10 +24,11 @@
 
     <!-- ======= Log Out Section ======= -->
     <div class="container logout">
-       <button class="button login__submit">
-					<span class="button__text">DeConnexion</span>
-					<i class="button__icon fas fa-chevron-right"></i>
-				</button>
+
+           <a href="../../connexion/logout.php" class="get-started-btn">DeConnexion</a>
+           <br><br>
+           <i>Cliquez pour vous deconnecter</i>
+				
     </div>
     
 

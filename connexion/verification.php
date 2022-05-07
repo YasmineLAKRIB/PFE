@@ -1,112 +1,46 @@
-<?php
-session_start();
+<?php session_start(); ?>
+
+<?php 
 $postData = $_POST;
-if (isset($postData['email']) &&  isset($postData['password'])) {
-        if (
-            $user['email'] === $postData['email'] &&
-            $user['password'] === $postData['password']
-        ) {
-            $loggedUser = [
-                'email' => $user['email'],
-            ];
-
-            /**
-             * Cookie qui expire dans un an
-             */
-            setcookie(
-                'LOGGED_USER',
-                $loggedUser['email'],
-                [
-                    'expires' => time() + 365*24*3600,
-                    'secure' => true,
-                    'httponly' => true,
-                ]
+$count = 0;
+$message = "";
+try {
+    $conn = new PDO("sqlsrv:Server=DESKTOP-3034QEN;Database=usthb90000L","","");
+    //$conn = new PDO("sqlsrv:Server=DESKTOP-3034QEN\SQLEXPRESS;Database=usthb90000L","","");
+    $conn->setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    if(isset($postData["email"]) && isset($postData["password"]) )
+     {
+         echo 'Continue <br/>';
+        $query = $conn->prepare("SELECT * FROM UTILISATEURS WHERE EMAIL = :email AND MOT_PASSE = :password ");
+        $query->execute(
+            [ 
+                'email' => $postData["email"],
+                'password' => $postData["password"],
+            ]
             );
 
-            $_SESSION['LOGGED_USER'] = $loggedUser['email'];
-        } else {
-            $errorMessage = sprintf('Les informations envoyées ne permettent pas de vous identifier : (%s/%s)',
-                $postData['email'],
-                $postData['password']
-            );
-        }
-    }
-}
+         $results = $query->fetchAll(PDO::FETCH_BOTH);
+  
+         $count = $query->rowCount();
+         if($count > 0){
+            $_SESSION["email"] = $postData["email"];
+             if ($postData["email"] === "lakrib@yahoo.com") {
+                header("location:../Admin/Views/index.php");
+             } 
+            else {
+                header("location:../User/Views/index.php");
+             }
 
-// Si le cookie ou la session sont présentes
-if (isset($_COOKIE['LOGGED_USER']) || isset($_SESSION['LOGGED_USER'])) {
-    $loggedUser = [
-        'email' => $_COOKIE['LOGGED_USER'] ?? $_SESSION['LOGGED_USER'],
-    ];
-}
-?>
+         } else {
+            header("location:connexion.php");
+            
+         }
+     } else {
+        header("location:connexion.php");
+     }
+     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<?php
-session_start();
-$postData = $_POST;
-if (isset($postData['email']) &&  isset($postData['password'])) {
-    foreach ($users as $user) {
-        if (
-            $user['email'] === $postData['email'] &&
-            $user['password'] === $postData['password']
-        ) {
-            $loggedUser = [
-                'email' => $user['email'],
-            ];
-
-            /**
-             * Cookie qui expire dans un an
-             */
-            setcookie(
-                'LOGGED_USER',
-                $loggedUser['email'],
-                [
-                    'expires' => time() + 365*24*3600,
-                    'secure' => true,
-                    'httponly' => true,
-                ]
-            );
-
-            $_SESSION['LOGGED_USER'] = $loggedUser['email'];
-        } else {
-            $errorMessage = sprintf('Les informations envoyées ne permettent pas de vous identifier : (%s/%s)',
-                $postData['email'],
-                $postData['password']
-            );
-        }
-    }
-}
-
-// Si le cookie ou la session sont présentes
-if (isset($_COOKIE['LOGGED_USER']) || isset($_SESSION['LOGGED_USER'])) {
-    $loggedUser = [
-        'email' => $_COOKIE['LOGGED_USER'] ?? $_SESSION['LOGGED_USER'],
-    ];
-}
-?>
+  catch(Exception $e){
+    die(print_r($e->getMessage()));
+  }

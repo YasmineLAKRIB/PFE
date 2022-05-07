@@ -66,9 +66,9 @@
 
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="../connexion/connexion.php">
+    <a class="nav-link collapsed" href="../../connexion/connexion.php">
       <i class="bi bi-box-arrow-in-right"></i>
-      <span>Login</span>
+      <span>Deconnexion</span>
     </a>
   </li><!-- End Login Page Nav -->
 

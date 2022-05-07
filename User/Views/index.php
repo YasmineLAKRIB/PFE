@@ -1,4 +1,4 @@
-
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,8 +16,9 @@
   <section id="hero" class="d-flex justify-content-center align-items-center">
     <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
       <h1>USTHB ManageIT,</h1>
-      <h2>Votre platform de gestion de classement et scolarité</h2>
-      <a href="workspace.html" class="btn-get-started">WorkSpace</a>
+      <h2> Bienvenu <?php echo $_SESSION["email"] ?> </h2>
+      <h2>Votre platforme de gestion des attestations de classement </h2>
+      <a href="workspace.php" class="btn-get-started">WorkSpace</a>
     </div>
   </section><!-- End Hero -->
 

@@ -1,5 +1,4 @@
-
-
+<?php $message ="error information"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,18 +21,13 @@
 				<div class="login__field">
 					<i class="login__icon fas fa-lock"></i>
 					<input type="password" name ="password" class="login__input" placeholder="Mot de passe" required>
+					<input  class="login__input" id="erreur" value="" placeholder="Erreur, Verifiez vos cordonnées !">
 				</div>
+				
 				<button class="button login__submit">
 					<span class="button__text">Connexion</span>
 					<i class="button__icon fas fa-chevron-right"></i>
 				</button>	
-                <?php
-                if(isset($_GET['erreur'])){
-                    $err = $_GET['erreur'];
-                    if($err==1 || $err==2)
-                        echo "<p style='color:red'>Utilisateur ou mot de passe incorrect</p>";
-                }
-                ?>			
 			</form>
 
             <div class="social-login">
@@ -50,7 +44,9 @@
 	</div>
 </div>
 
-
+<script>
+	document.getElementById("erreur").style.visibility = "hidden";
+</script>
 
 
     

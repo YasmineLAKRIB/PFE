@@ -137,6 +137,7 @@
 .login__submit:hover {
 	border:2px solid #00ff6a;
 	outline: none;
+	
 }
 
 .social-login {	
@@ -149,4 +150,3 @@
 	color: #fff;
   padding-top: 20px;
 }
-
