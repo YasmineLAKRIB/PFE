@@ -3,44 +3,55 @@
 <?php 
 $postData = $_POST;
 $count = 0;
-$message = "";
+$password = $postData["password"];
+$message =false;
+
 try {
     $conn = new PDO("sqlsrv:Server=DESKTOP-3034QEN;Database=usthb90000L","","");
     //$conn = new PDO("sqlsrv:Server=DESKTOP-3034QEN\SQLEXPRESS;Database=usthb90000L","","");
     $conn->setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    if(isset($postData["email"]) && isset($postData["password"]) )
+    if(isset($postData["id"]) && isset($postData["password"]) )
      {
-         echo 'Continue <br/>';
-        $query = $conn->prepare("SELECT * FROM UTILISATEURS WHERE EMAIL = :email AND MOT_PASSE = :password ");
+        $query = $conn->prepare("SELECT * FROM UTILISATEURS WHERE ID = :id ");
         $query->execute(
             [ 
-                'email' => $postData["email"],
-                'password' => $postData["password"],
+                'id' => $postData["id"],
             ]
             );
 
          $results = $query->fetchAll(PDO::FETCH_BOTH);
-  
          $count = $query->rowCount();
          if($count > 0){
-            $_SESSION["email"] = $postData["email"];
-             if ($postData["email"] === "lakrib@yahoo.com") {
-                header("location:../Admin/Views/index.php");
-             } 
-            else {
-                header("location:../User/Views/index.php");
-             }
+            if (password_verify( $password,$results[0]["MOT_PASSE"])){
+               $_SESSION["ID"] = $postData["id"];
+               if ($results[0]["ENABLED"] == "Oui") {  
+                   if ($results[0]["TYPE"] == "Admin"){
+                       header("location:../Admin/Views/index.php");
+                   }else {
+                     header("location:../Utilisateur/Views/index.php");
+                   }
+                
+               } else {
+               echo "Veriffiez vos informations";
+               header("location:connexion.php");
+ 
+               }
+            
+            } else {
+               header("location:connexion.php");
+  ;
+            }
 
          } else {
-            header("location:connexion.php");
-            
+           header("location:connexion.php");
+
          }
-     } else {
-        header("location:connexion.php");
-     }
+
      }
 
-  catch(Exception $e){
+   }
+     
+   catch(Exception $e){
     die(print_r($e->getMessage()));
   }

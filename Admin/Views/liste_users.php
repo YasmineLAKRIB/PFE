@@ -1,9 +1,15 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
+<?php   
+     include '../fcts/CRUD.php';
+     $users = getAllUsers();
+?>
 
 <head>
   
-  <title>Tables / Data - NiceAdmin Bootstrap Template</title>
+ <title>USTHB Admin - Liste utilisateurs</title>
   <?php include_once('../includes/head.php'); ?>
 </head>
 
@@ -15,12 +21,12 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Data Tables</h1>
+      <h1>Liste Utilisateurs</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Tables</li>
-          <li class="breadcrumb-item active">Data</li>
+          <li class="breadcrumb-item">Listes</li>
+          <li class="breadcrumb-item active">Liste Utilisateurs</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -31,66 +37,51 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Datatables</h5>
-              <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
-
-              <!-- Table with stripped rows -->
+              <h5 class="card-title">Liste Utilisateurs</h5>
+              <p>Liste des admins et utilisateurs de la platform, ceux qui ont acces et ceux qu'ils ont pas.</p>
+              <p>Ainsi les informations les concernants</p>
+         
+              <!-- Liste utilisateurs -->
               <table class="table datatable">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">NOM</th>
+                    <th scope="col">MAIL</th>
+                    <th scope="col">TEL</th>
+                    <th scope="col">FAC</th>
+                    <th scope="col">TYP</th>
+                    <th scope="col">ENB</th>
+                    <th scope="col">Modf</th>
+                    <th scope="col">Supp</th>
                   </tr>
                 </thead>
+
                 <tbody>
+
+                <?php foreach($users as $user): ?>
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>Designer</td>
-                    <td>28</td>
-                    <td>2016-05-25</td>
+                    <th scope="row"><a href=""><?php echo $user['ID'] ?></a></th>
+                    <td wrap="hard"><?php echo $user['NOM_PRENOM'] ?></td>
+                    <td wrap="hard"><?php echo $user['EMAIL'] ?></td>
+                    <td wrap="hard"><?php echo $user['TEL'] ?></td>
+                    <td wrap="hard"><?php echo $user['FACULTE'] ?></td>
+                    <td wrap="hard"><?php echo $user['TYPE'] ?></td>
+                    <td wrap="hard"><?php echo $user['ENABLED'] ?></td>
+                    <td><?php echo '<a href="modification_user.php?EMAIL='.$user['EMAIL'].'"><button type="button" class="btn btn-info"><i class="bi bi-info-circle"></i></button></a>' ?></td>
+                    <td><?php echo '<a href="../forms/supprim_form.php?EMAIL='.$user['EMAIL'].'"><button type="button" class="btn btn-danger"><i class="bi bi-exclamation-octagon"></i></button></a>' ?></td>
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Bridie Kessler</td>
-                    <td>Developer</td>
-                    <td>35</td>
-                    <td>2014-12-05</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Ashleigh Langosh</td>
-                    <td>Finance</td>
-                    <td>45</td>
-                    <td>2011-08-12</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Angus Grady</td>
-                    <td>HR</td>
-                    <td>34</td>
-                    <td>2012-06-11</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>Raheem Lehner</td>
-                    <td>Dynamic Division Officer</td>
-                    <td>47</td>
-                    <td>2011-04-19</td>
-                  </tr>
+                <?php endforeach; ?>
                 </tbody>
               </table>
-              <!-- End Table with stripped rows -->
-
+              <!-- Fin liste Utilisateurs -->
             </div>
           </div>
 
         </div>
       </div>
     </section>
+
 
   </main><!-- End #main -->
 

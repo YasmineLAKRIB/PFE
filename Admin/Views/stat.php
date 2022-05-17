@@ -1,9 +1,10 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   
-  <title>Charts / Chart.js - NiceAdmin Bootstrap Template</title>
+  <title>USTHB Admin - Statistiques</title>
   <?php include_once('../includes/head.php'); ?>
 </head>
 
@@ -15,17 +16,17 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Chart.js</h1>
+      <h1>Statistiques</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Charts</li>
-          <li class="breadcrumb-item active">Chart.js</li>
+          <li class="breadcrumb-item">Statistiques</li>
+          <li class="breadcrumb-item active">Statistiques</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-    <p>Chart.JS Examples. You can check the <a href="https://www.chartjs.org/docs/latest/samples/" target="_blank">official website</a> for more examples.</p>
+    <p>Statistiques pour faire le tracking du flux des messages, ainsi connaitre la population à gérer</p>
 
     <section class="section">
       <div class="row">

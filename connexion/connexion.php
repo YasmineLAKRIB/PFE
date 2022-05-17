@@ -1,6 +1,5 @@
-<?php $message ="error information"; ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +15,7 @@
 			<form class="login" action="verification.php" method="post">
 				<div class="login__field">
 					<i class="login__icon fas fa-user"></i>
-					<input type="text" name="email" class="login__input" placeholder="Email" required>
+					<input type="text" name="id" class="login__input" placeholder="Identificateur" required>
 				</div>
 				<div class="login__field">
 					<i class="login__icon fas fa-lock"></i>
@@ -24,7 +23,7 @@
 					<input  class="login__input" id="erreur" value="" placeholder="Erreur, Verifiez vos cordonnées !">
 				</div>
 				
-				<button class="button login__submit">
+				<button class="button login__submit" >
 					<span class="button__text">Connexion</span>
 					<i class="button__icon fas fa-chevron-right"></i>
 				</button>	

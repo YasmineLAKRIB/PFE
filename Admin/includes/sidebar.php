@@ -17,8 +17,8 @@
     </a>
     <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="form.php">
-          <i class="bi bi-circle"></i><span>Formulaire Utilisateurs</span>
+        <a href="ajout_user.php">
+          <i class="bi bi-circle"></i><span>Ajouter Utilisateurs</span>
         </a>
       </li>
     </ul>
