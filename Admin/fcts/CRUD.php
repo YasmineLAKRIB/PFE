@@ -26,9 +26,9 @@ function createUser($ID, $NOM_PRENOM, $EMAIL, $MOT_PASSE, $TEL, $FACULTE, $BUREA
     try {
         $conn = getDatabaseConnexion();
         $sql = "INSERT INTO UTILISATEURS (ID, NOM_PRENOM, EMAIL, MOT_PASSE, TEL,
-		    FACULTE, BUREAU, ADRESSE, TYPE, ENABLED) 
+		    FACULTE, TYPE, ENABLED) 
             VALUES ('$ID', '$NOM_PRENOM', '$EMAIL', '$MOT_PASSE' 
-			,'$TEL','$FACULTE', '$BUREAU' ,'$ADRESSE', '$TYPE' ,'$ENABLED')";
+			,'$TEL','$FACULTE', '$TYPE' ,'$ENABLED')";
 
         $conn->exec($sql);
 		password_hash('', PASSWORD_DEFAULT);
@@ -119,6 +119,26 @@ function getAllMessages() {
     return $messages;
 }
 
+//recupere une faculté
+function readFac($FACCODE) {
+	$conn = getDatabaseConnexion();
+	$requete = "SELECT FAC from FACULTE0000 where FACCODE = '$FACCODE' ";
+	$stmt = $conn->query($requete);
+	$row = $stmt->fetchAll();
+	if (!empty($row)) {
+		return $row[0];
+	}
+}
 
+//recupere un admin
+function readAdmin($ID) {
+	$conn = getDatabaseConnexion();
+	$requete = "SELECT * from UTILISATEURS where ID = '$ID' ";
+	$stmt = $conn->query($requete);
+	$row = $stmt->fetchAll();
+	if (!empty($row)) {
+		return $row[0];
+	}
+}
 
 ?>

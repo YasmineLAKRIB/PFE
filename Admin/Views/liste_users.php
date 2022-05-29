@@ -1,4 +1,25 @@
 <?php session_start(); ?>
+<?php if($_SESSION["ID"] != "") : ?>
+<?php
+
+function annee_scolaire_actuelle()
+{
+    $mois = date("m");//Le mois de la date actuelle
+    $annee_actuelle = date("Y");//L'année de la date actuelle
+    if ($mois >= 9 && $mois <= 12) {
+        $annee1 = $annee_actuelle;
+        $annee2 = $annee_actuelle + 1;
+    } else {
+        $annee1 = $annee_actuelle - 1;
+        $annee2 = $annee_actuelle;
+    }
+
+    $annee_scolaire_actuelle = $annee1 . "/" . $annee2;
+    return $annee_scolaire_actuelle;
+}
+
+$as=annee_scolaire_actuelle();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -70,6 +91,7 @@
                     <td wrap="hard"><?php echo $user['ENABLED'] ?></td>
                     <td><?php echo '<a href="modification_user.php?EMAIL='.$user['EMAIL'].'"><button type="button" class="btn btn-info"><i class="bi bi-info-circle"></i></button></a>' ?></td>
                     <td><?php echo '<a href="../forms/supprim_form.php?EMAIL='.$user['EMAIL'].'"><button type="button" class="btn btn-danger"><i class="bi bi-exclamation-octagon"></i></button></a>' ?></td>
+                        
                   </tr>
                 <?php endforeach; ?>
                 </tbody>
@@ -91,3 +113,7 @@
 </body>
 
 </html>
+
+<?php else : ?>
+  <?php header("location:../../index.php"); ?>
+<?php endif; ?>

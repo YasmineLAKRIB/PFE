@@ -30,7 +30,8 @@ if (!isset($getData['id']) || !isset($getData['name']) || !isset($getData['email
 $id = $getData['id'];
 $name = $getData ['name'];
 $email = $getData['email'];
-$password = $getData['password'];
+$pass = $getData['password'];
+$password = password_hash($pass, PASSWORD_DEFAULT);
 $tel = $getData['tel'];
 $fac = $getData['fac'];
 $type = $getData['type'];

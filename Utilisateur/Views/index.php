@@ -1,4 +1,5 @@
 <?php session_start(); ?>
+<?php if($_SESSION["ID"] != "") : ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -48,29 +49,6 @@
         <div class="col-lg-8">
           <div class="row">
           
-            <!-- Carte informative Taff de scolarité -->
-            <div class="col-xxl-4 col-xl-12">
-
-              <div class="card info-card customers-card">
-
-                <div class="card-body">
-                  <h5 class="card-title">Gestionaires de scolarité <span>| cette année</span></h5>
-
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-people"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6>44</h6>
-                      <span class="text-danger small pt-1 fw-bold">4%</span> <span class="text-muted small pt-2 ps-1">du Taff</span>
-
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-            </div><!-- Fin Carte informative Taff de scolarité -->
 
              <!-- pics Card -->
              <div class="col-xxl-4 col-xl-12">
@@ -169,191 +147,7 @@
 
 
 
-<!-- Charts section -->
-<div class="pagetitle">
-  <h1>Statistiques</h1>
-  <nav>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-      <li class="breadcrumb-item active">Statistiques</li>
-    </ol>
-  </nav>
-</div><!-- End Page Title -->
 
-<p>Representation Statistique</p>
-
-<section class="section">
-  <div class="row">
-
-    <div class="col-lg-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Ligne graphique des diplomés par année</h5>
-
-          <!-- Line Chart -->
-          <canvas id="lineChart" style="max-height: 400px;"></canvas>
-          <script>
-            document.addEventListener("DOMContentLoaded", () => {
-              new Chart(document.querySelector('#lineChart'), {
-                type: 'line',
-                data: {
-                  labels: ['2018', '2019', '2020', '2021', '2022'],
-                  datasets: [{
-                    label: 'Diplomés par année',
-                    data: [7890, 8100, 6720, 6943, 7270],
-                    fill: false,
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1
-                  }]
-                },
-                options: {
-                  scales: {
-                    y: {
-                      beginAtZero: true
-                    }
-                  }
-                }
-              });
-            });
-          </script>
-          <!-- End Line CHart -->
-
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Bar de statistiques</h5>
-
-          <!-- Bar Chart -->
-          <canvas id="barChart" style="max-height: 400px;"></canvas>
-          <script>
-            document.addEventListener("DOMContentLoaded", () => {
-              new Chart(document.querySelector('#barChart'), {
-                type: 'bar',
-                data: {
-                  labels: ['Etudiants', 'Dimplomés'],
-                  datasets: [{
-                    label: 'Bar de statistiques etudiants',
-                    data: [41000, 35000],
-                    backgroundColor: [
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)'
-                    ],
-                    borderColor: [
-                      'rgb(255, 99, 132)',
-                      'rgb(54, 162, 235)'
-                    ],
-                    borderWidth: 1
-                  }]
-                },
-                options: {
-                  scales: {
-                    y: {
-                      beginAtZero: true
-                    }
-                  }
-                }
-              });
-            });
-          </script>
-          <!-- End Bar CHart -->
-
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">diagramme circulaire _Etudiants diplomables_</h5>
-
-          <!-- Pie Chart -->
-          <canvas id="pieChart" style="max-height: 400px;"></canvas>
-          <script>
-            document.addEventListener("DOMContentLoaded", () => {
-              new Chart(document.querySelector('#pieChart'), {
-                type: 'pie',
-                data: {
-                  labels: [
-                    'Master',
-                    'Licence'
-                  ],
-                  datasets: [{
-                    label: 'Etudiants Diplomables',
-                    data: [112,245],
-                    backgroundColor: [
-                      'rgb(54, 162, 235)',
-                      'rgb(255, 210, 13)'
-                    ],
-                    hoverOffset: 4
-                  }]
-                }
-              });
-            });
-          </script>
-          <!-- End Pie CHart -->
-
-        </div>
-      </div>
-    </div>
-
-
-
-    <div class="col-lg-6">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Statistiques _Etudiants par Faculté_</h5>
-
-          <!-- Polar Area Chart -->
-          <canvas id="polarAreaChart" style="max-height: 400px;"></canvas>
-          <script>
-            document.addEventListener("DOMContentLoaded", () => {
-              new Chart(document.querySelector('#polarAreaChart'), {
-                type: 'polarArea',
-                data: {
-                  labels: [
-                    'Bio',
-                    'Ch',
-                    'Phy',
-                    'GC',
-                    'GE',
-                    'Info',
-                    'Math',
-                    'GAT',
-                    'GM',
-                    'GP'
-                  ],
-                  datasets: [{
-                    label: 'Etudiants par faculté',
-                    data: [7300, 3400, 4500, 3600, 5300,3300,6543,5200,2900,4400],
-                    backgroundColor: [
-                      'rgb(255, 99, 132)',
-                      'rgb(75, 192, 192)',
-                      'rgb(255, 205, 86)',
-                      'rgb(201, 203, 207)',
-                      'rgb(23, 80, 132)',
-                      'rgb(55, 99, 1)',
-                      'rgb(255, 210, 13)',
-                      'rgb(255, 99, 32)',
-                      'rgb(25, 91, 132)',
-                      'rgb(54, 162, 235)'
-                    ]
-                  }]
-                }
-              });
-            });
-          </script>
-          <!-- End Polar Area Chart -->
-
-        </div>
-      </div>
-    </div>
-
-   </div>
-  </section>
 
   </main><!-- End #main -->
 
@@ -362,3 +156,8 @@
 </body>
 
 </html>
+
+<?php else : ?>
+  <?php header("location:../../index.php"); ?>
+<?php endif; ?>
+

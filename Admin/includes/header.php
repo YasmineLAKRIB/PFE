@@ -31,8 +31,19 @@
           <hr class="dropdown-divider">
         </li>
 
+        
         <li>
-          <a class="dropdown-item d-flex align-items-center" href="../../connexion/connexion.php">
+          <a class="dropdown-item d-flex align-items-center" href="../Views/profile_admin.php">
+          <i class="bi bi-person"></i>
+          <span>Mon Profile</span>
+          </a>
+        </li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        
+        <li>
+          <a class="dropdown-item d-flex align-items-center" href="../../login/logout.php">
             <i class="bi bi-box-arrow-right"></i>
             <span>Deconnexion</span>
           </a>

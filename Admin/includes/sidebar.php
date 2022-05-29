@@ -42,18 +42,6 @@
     </ul>
   </li><!-- End Listes Nav -->
 
-  <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-      <i class="bi bi-bar-chart"></i><span>Statistiques</span><i class="bi bi-chevron-down ms-auto"></i>
-    </a>
-    <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-      <li>
-        <a href="stat.php">
-          <i class="bi bi-circle"></i><span>Statistiques</span>
-        </a>
-      </li>
-    </ul>
-  </li><!-- End Charts Nav -->
 
   <li class="nav-heading">Pages</li>
 
@@ -66,7 +54,7 @@
 
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="../../connexion/connexion.php">
+    <a class="nav-link collapsed" href="../../login/logout.php">
       <i class="bi bi-box-arrow-in-right"></i>
       <span>Deconnexion</span>
     </a>

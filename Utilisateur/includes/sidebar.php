@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+
 <!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
 
@@ -19,16 +19,29 @@
     <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       
       <li>
-        <a href="class_licence.php">
+        <a href="licence/generer_class.php">
           <i class="bi bi-circle"></i><span>Licence</span>
         </a>
       </li>
 
       <li>
-        <a href="class_master.php">
+        <a href="master/generer_class_m.php">
           <i class="bi bi-circle"></i><span>Master</span>
         </a>
       </li>
+
+      <li>
+        <a href="licence/cherche_student.php">
+          <i class="bi bi-circle"></i><span>Recherche Licence</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="master/cherche_student_m.php">
+          <i class="bi bi-circle"></i><span>Recherche Master</span>
+        </a>
+      </li>
+
     </ul>
   </li><!-- End Form Nav -->
 
@@ -53,6 +66,12 @@
 
   <li class="nav-heading">Pages</li>
 
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="profile_user.php">
+      <i class="bi bi-person"></i>
+      <span>Profile</span>
+    </a>
+  </li><!-- End Profile Page Nav -->
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="contact.php">
@@ -63,7 +82,7 @@
 
 
   <li class="nav-item">
-    <a class="nav-link collapsed" href="../../connexion/connexion.php">
+    <a class="nav-link collapsed" href="../../login/logout.php">
       <i class="bi bi-box-arrow-in-right"></i>
       <span>Deconnexion</span>
     </a>

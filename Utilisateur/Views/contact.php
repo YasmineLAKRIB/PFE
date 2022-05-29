@@ -1,4 +1,5 @@
 <?php session_start(); ?>
+<?php if($_SESSION["ID"] != "") : ?>
 <?php 
  include_once('./../configuration/config.php');
 ?>
@@ -125,3 +126,9 @@
 </body>
 
 </html>
+
+
+<?php else : ?>
+  <?php header("location:../../index.php"); ?>
+<?php endif; ?>
+
