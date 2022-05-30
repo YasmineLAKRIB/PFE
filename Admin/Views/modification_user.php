@@ -16,11 +16,11 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   
-  <title>Forms / Elements - NiceAdmin Bootstrap Template</title>
+  <title>USTHB Admin - Modification de l'utilisateur </title>
   <?php include_once('../includes/head.php'); ?>
 </head>
 </head>
@@ -32,12 +32,12 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Form Elements</h1>
+      <h1>Modification de l'utilisateur</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Forms</li>
-          <li class="breadcrumb-item active">Elements</li>
+          <li class="breadcrumb-item"><a href="index.php">Tableau de bord</a></li>
+          <li class="breadcrumb-item">Formulaires</li>
+          <li class="breadcrumb-item active">Modification de l'utilisateur</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->

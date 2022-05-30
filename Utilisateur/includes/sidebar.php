@@ -7,7 +7,7 @@
   <li class="nav-item">
     <a class="nav-link " href="index.php">
       <i class="bi bi-grid"></i>
-      <span>Home</span>
+      <span>Page d'Accueil</span>
     </a>
   </li><!-- End Dashboard Nav -->
 

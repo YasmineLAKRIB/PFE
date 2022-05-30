@@ -45,7 +45,7 @@ $as=annee_scolaire_actuelle();
       <h1>Liste Utilisateurs</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="index.php">Tableau de bord</a></li>
           <li class="breadcrumb-item">Listes</li>
           <li class="breadcrumb-item active">Liste Utilisateurs</li>
         </ol>
@@ -59,7 +59,7 @@ $as=annee_scolaire_actuelle();
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Liste Utilisateurs</h5>
-              <p>Liste des admins et utilisateurs de la platform, ceux qui ont acces et ceux qu'ils ont pas.</p>
+              <p>Liste des admins et utilisateurs de la platforme, ceux qui ont acces et ceux qu'ils ont pas.</p>
               <p>Ainsi les informations les concernants</p>
          
               <!-- Liste utilisateurs -->

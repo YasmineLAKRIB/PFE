@@ -26,7 +26,7 @@
       <h1>Liste Messages</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+          <li class="breadcrumb-item"><a href="index.php">Tableau de bord</a></li>
           <li class="breadcrumb-item">Listes</li>
           <li class="breadcrumb-item active">Liste Messages</li>
         </ol>

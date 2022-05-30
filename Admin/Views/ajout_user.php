@@ -24,9 +24,9 @@
       <h1>Formulaire d'ajout</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="index.php">Tableau de bord</a></li>
           <li class="breadcrumb-item">Formulaires</li>
-          <li class="breadcrumb-item active">Ajouter Utilisateurs</li>
+          <li class="breadcrumb-item active">Ajouter un utilisateur</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->

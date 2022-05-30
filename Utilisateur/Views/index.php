@@ -4,7 +4,7 @@
 <html lang="fr">
 
 <head>
-  <title>Home Page  -USTHB- </title>
+  <title>Page d'Accueil -USTHB- </title>
   <?php include_once('../includes/head.php'); ?>
 </head>
 
@@ -16,10 +16,10 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Home Pgae</h1>
+      <h1>Page d'Accueil</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+          <li class="breadcrumb-item"><a href="index.php">Page d'Accueil</a></li>
           <li class="breadcrumb-item active">Activités</li>
         </ol>
       </nav>
@@ -56,16 +56,13 @@
                 <div class="card info-card customers-card">
 
                 <div class="card-body">
-                 <h5 class="card-title">USTHB <span>| Université Houari Boumedien</span></h5>
+                 <h5 class="card-title">USTHB <span>| Université des sciences et technologies Houari Boumedien</span></h5>
 
                   <!-- Slides with fade transition -->
                   <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
                   <div class="carousel-inner">
                   <div class="carousel-item active">
                     <img src="../assets/img/usthb.jpg" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="../assets/img/usthb2.jpeg" class="d-block w-100" alt="...">
                   </div>
                   <div class="carousel-item">
                     <img src="../assets/img/usthb.jpg" class="d-block w-100" alt="...">
