@@ -1,17 +1,13 @@
 <?php session_start(); ?>
-<?php if($_SESSION["ID"] != "") : ?>
 <?php 
 $postData = $_POST;
 $password = $postData["password"];
-//$newpassword = $postData["newpassword"];
-//$renewpassword = $postData["renewpassword"];
-//$new_password = $newpassword, PASSWORD_DEFAULT);
+
 $id = $_SESSION["ID"];
 
 
 try {
     $conn = new PDO("sqlsrv:Server=DESKTOP-3034QEN;Database=usthb90000L","","");
-    //$conn = new PDO("sqlsrv:Server=DESKTOP-3034QEN\SQLEXPRESS;Database=usthb90000L","","");
     $conn->setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
     if(isset($password) )
@@ -33,7 +29,7 @@ try {
                                             WHERE ID = :id' 
                     );
                     $insertmessage->execute([
-                        'password' => password_hash($postData["newpassword"], PASSWORD_DEFAULT),
+                        'password' => $postData["newpassword"],
                         'id' => $id,
                     ]);
                     $message_correct ="Votre Mot de passe a bien été reinitialiser";
@@ -211,6 +207,3 @@ $admin = readAdmin($id);
 
 </html>
 
-<?php else : ?>
-  <?php header("location:../../index.php"); ?>
-<?php endif; ?>

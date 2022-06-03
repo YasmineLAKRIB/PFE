@@ -2,7 +2,7 @@
 session_start();
 include('traitement/config.php');
 ?>
-<?php if($_SESSION["ID"] != "") : ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 

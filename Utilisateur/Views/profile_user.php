@@ -1,15 +1,11 @@
 <?php session_start(); ?>
-<?php if($_SESSION["ID"] != "") : ?>
+
 <?php include("../configuration/fcts.php"); ?>
 
 <?php 
 $id = $_SESSION["ID"];
 $admin = readAdmin($id);
 $postData = $_POST;
-//$password = $postData["password"];
-//$newpassword = $postData["newpassword"];
-//$renewpassword = $postData["renewpassword"];
-//$new_password = $newpassword, PASSWORD_DEFAULT);
 
 
 
@@ -37,7 +33,7 @@ try {
                                             WHERE ID = :id' 
                     );
                     $insertmessage->execute([
-                        'password' => password_hash($postData["newpassword"], PASSWORD_DEFAULT),
+                        'password' => $postData["newpassword"],
                         'id' => $id,
                     ]);
                     $message_correct ="Votre Mot de passe a bien été reinitialiser";
@@ -204,9 +200,4 @@ try {
 </body>
 
 </html>
-
-
-<?php else : ?>
-  <?php header("location:../../index.php"); ?>
-<?php endif; ?>
 

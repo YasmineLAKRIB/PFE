@@ -58,12 +58,12 @@ $tsql10="if not exists (select * from dbo.sysobjects where id = object_id(N'[dbo
     ";
 $getresults = $conn->prepare($tsql10)->execute();
 
-//créer un index pour la table classement 
+
 $tsql4="if not exists (select * from sysindexes
   where id=object_id('[dbo].[CLASSEMENTL]') and name='index_CLASSEMENTL') CREATE INDEX index_CLASSEMENTL ON [dbo].[CLASSEMENTL] (mat)";
 $getresults = $conn->prepare($tsql4)->execute();
 
-// vérifier si le classement existe déjà
+
 $tsql4="IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[filtreExists]') AND OBJECTPROPERTY(id,N'IsScalarFunction') = 1)
 BEGIN
     EXEC ('ALTER FUNCTION [dbo].[filtreExists]() returns int as 
@@ -114,7 +114,7 @@ $tsql4="if not exists (select * from sysindexes
   where id=object_id('[dbo].[CREDITRES]') and name='index_credits ') CREATE INDEX index_credits ON [dbo].[CREDITRES] (mat)";
 $getresults = $conn->prepare($tsql4)->execute();
 
-// une vue qui contient tous les étudiant inscrit en une année précise
+
 $tsql1="IF NOT EXISTS(select * FROM sys.views where name = 'fan')
 BEGIN    
   EXEC ('
@@ -132,7 +132,9 @@ BEGIN
   ')
 END";
 $getresults = $conn->prepare($tsql1)->execute();
-// une vue qui contient tous les étudiant inscrit en 3 ème année dans une spécialité précise
+
+
+
 $tsql2="IF NOT EXISTS(select * FROM sys.views where name = 'fspec')
 BEGIN    
   EXEC ('
@@ -170,11 +172,8 @@ BEGIN
 END";
 $getresults = $conn->prepare($tsql100)->execute();
 
-// $tsql100="alter view f12 (mat) as select mat from [usthb90000L].dbo.CURSUS0000 where (anet=1 or anet=2) and sauv<=$annee";
-// $getresults = $conn->prepare($tsql100)->execute();
+/////////////////////////////////////////////////
 
-
-// création d'une vue qui contient l'intersection des vues
 $tsql3="IF NOT EXISTS(select * FROM sys.views where name = 'intersection')
 BEGIN    
   EXEC ('
@@ -249,14 +248,12 @@ include ('s4.php');
 include ('s5.php');
 include ('s6.php');
 
-// calacul de la MSE 
+
 $tsql="select * from [usthb90000L].[dbo].[results]";
     $getresults2 = $conn->prepare($tsql);
 $getresults2->execute();
 $results = $getresults2->fetchAll(PDO::FETCH_BOTH);
-// $tsql="update [usthb90000L].[dbo].[results] c set MSE=(select (moy1+moy2+moy3+moy4+moy5+moy6)/6 from [usthb90000L].[dbo].[results] where mat=c.mat)";
-//     $getresults2 = $conn->prepare($tsql);
-// $getresults2->execute();
+/////////////////////////////////////////////////
 foreach($results as $row){
 $mse=($row['MOY1']+$row['MOY2']+$row['MOY3']+$row['MOY4']+$row['MOY5']+$row['MOY6'])/6;
     $tsql="update [usthb90000L].[dbo].[results] set MSE=? where mat=?";
@@ -278,8 +275,8 @@ $tsql="update [usthb90000L].[dbo].[results] set S=(select count(*) from [usthb90
 $getresults2->execute([$row['MAT'],$row['MAT']]);
 }
 
-// une vue qui contient les matricule des étudiant dont l crédit total=180
 
+/////////////////////////////////////////////////
 $tsql1="IF NOT EXISTS(select * FROM sys.views where name = 'fresult')
 BEGIN
     EXEC ('
@@ -295,7 +292,7 @@ END
 ";
 $getresults = $conn->prepare($tsql1)->execute();
 
-//crétion d'une table qui contient les informations du classement
+/////////////////////////////////////////////////
 $tsql10="if not exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[CLASSEMENT]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
     create table [dbo].[CLASSEMENT] (
     [MAT] [varchar] (13) COLLATE Latin1_General_100_CI_AI_SC NOT NULL ,
@@ -351,17 +348,17 @@ $tsql10="if not exists (select * from dbo.sysobjects where id = object_id(N'[dbo
     ";
 $getresults = $conn->prepare($tsql10)->execute();
 
-//créer un index pour la table classement 
+/////////////////////////////////////////////////
 $tsql4="if not exists (select * from sysindexes
   where id=object_id('[dbo].[CLASSEMENT]') and name='index_CLASSEMENT') CREATE INDEX index_CLASSEMENT ON [dbo].[CLASSEMENT] (mat)";
 $getresults = $conn->prepare($tsql4)->execute();
 
-// vider la table classement
+/////////////////////////////////////////////////
 $tsql11= "truncate table [usthb90000L].[dbo].[CLASSEMENT]";
 $getresults1 = $conn->prepare($tsql11);
 $getresults1->execute();
 
-// selectionner les matricules des étudiants ayant un credit=180
+/////////////////////////////////////////////////
 $tsql="select * from [usthb90000L].[dbo].[fresult]";
     $getresults2 = $conn->prepare($tsql);
 $getresults2->execute();
@@ -369,7 +366,7 @@ $results = $getresults2->fetchAll(PDO::FETCH_BOTH);
 
 //remplissage de la table finale 
 foreach($results as $row){
-    //insertion matricule+info perso + OCODE
+ 
     $tsql="insert into [usthb90000L].[dbo].[CLASSEMENT] (MAT, NAME, PNAME, DN, LN, OCODE) (select e.MAT, NAME, PNAME, DN, LN, OCODE from [usthb90000L].dbo.ETUDIANT0000 e,[usthb90000L].dbo.CURSUS0000 c where e.mat=c.mat and c.anet=3 and e.mat =?)";
     $getresults2 = $conn->prepare($tsql);
 $getresults2->execute([$row['MAT']]);
@@ -409,7 +406,7 @@ $tsql="update [usthb90000L].[dbo].[CLASSEMENT] set MOY6=(select MOY6 from [usthb
     $getresults2 = $conn->prepare($tsql);
 $getresults2->execute([$row['MAT'],$row['MAT']]);
 
-//insertion des crédits semestriels s1 -> s6
+///////////////////////////////////////////////// s1 -> s6
 $tsql="update [usthb90000L].[dbo].[CLASSEMENT] set CRACQ1=(select CRACQ1 from [usthb90000L].[dbo].[results] where mat=?) where mat=?";
     $getresults2 = $conn->prepare($tsql);
 $getresults2->execute([$row['MAT'],$row['MAT']]);
@@ -429,7 +426,7 @@ $tsql="update [usthb90000L].[dbo].[CLASSEMENT] set CRACQ6=(select CRACQ6 from [u
     $getresults2 = $conn->prepare($tsql);
 $getresults2->execute([$row['MAT'],$row['MAT']]);
 
-//insertion des sessions semestrielles s1 -> s6
+///////////////////////////////////////////////// s1 -> s6
 $tsql="update [usthb90000L].[dbo].[CLASSEMENT] set session1=(select session1 from [usthb90000L].[dbo].[results] where mat=?) where mat=?";
     $getresults2 = $conn->prepare($tsql);
 $getresults2->execute([$row['MAT'],$row['MAT']]);
@@ -449,7 +446,7 @@ $tsql="update [usthb90000L].[dbo].[CLASSEMENT] set session6=(select session6 fro
     $getresults2 = $conn->prepare($tsql);
 $getresults2->execute([$row['MAT'],$row['MAT']]);
 
-//insertion des sauvs semestrielles s1 -> s6
+///////////////////////////////////////////////// s1 -> s6
 $tsql="update [usthb90000L].[dbo].[CLASSEMENT] set SAUV1=(select SAUV1 from [usthb90000L].[dbo].[results] where mat=?) where mat=?";
     $getresults2 = $conn->prepare($tsql);
 $getresults2->execute([$row['MAT'],$row['MAT']]);
@@ -493,7 +490,7 @@ $tsql="update [usthb90000L].[dbo].[CLASSEMENT] set DESIGNATION='$spec'";
 $getresults2 = $conn->prepare($tsql);
 $getresults2->execute();
 
-// récupérer les infos des étudiants pour calculer les moyennes de classement et la moyenne de chaque année 
+// récupérer les infos des étudiants 
 $tsql="select * from [usthb90000L].[dbo].[CLASSEMENT]";
     $getresults2 = $conn->prepare($tsql);
 $getresults2->execute();
@@ -520,7 +517,7 @@ $tsql="update [usthb90000L].[dbo].[CLASSEMENT] set MC=? where mat=?";
     $getresults2 = $conn->prepare($tsql);
 $getresults2->execute([$mc,$row['MAT']]);
 
-// calcul moyenne de chaque année
+// calcul moyenne 
 $L1=($row['MOY1']+$row['MOY2'])/2;
 $L2=($row['MOY3']+$row['MOY4'])/2;
 $L3=($row['MOY5']+$row['MOY6'])/2;
@@ -597,7 +594,7 @@ $tsql="update [usthb90000L].[dbo].[CLASSEMENT] set rang= (select distinct classe
     $getresults2 = $conn->prepare($tsql);
 $getresults2->execute();
 
-// calcul des catégories
+/////////////////////////////////////////////////
 $tsql="select max(RANG) as cmpt from [usthb90000L].[dbo].[CLASSEMENT]";
     $getresults2 = $conn->prepare($tsql);
 $getresults2->execute();
@@ -612,7 +609,7 @@ foreach($results as $row){
     $cmpt= $row['cmpt'];
 }
 
-// insertion catégorie
+/////////////////////////////////////////////////
 for($i = 1; $i <=$A; ++$i) {
     $tsql="update [usthb90000L].[dbo].[CLASSEMENT] set categorie='A' where rang=?";
     $getresults2 = $conn->prepare($tsql);

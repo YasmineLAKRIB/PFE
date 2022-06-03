@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php if($_SESSION["ID"] != "") : ?>
+
 <?php 
   include '../fcts/CRUD.php';
   $facultes = getFacultes();
@@ -145,6 +145,3 @@
 
 </html>
 
-<?php else : ?>
-  <?php header("location:../../index.php"); ?>
-<?php endif; ?>

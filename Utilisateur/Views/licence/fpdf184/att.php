@@ -145,34 +145,33 @@ function mois(string $mois)
 
 class PDF extends FPDF
 {
-// En-tête
+
 function Header()
 {
-    // Logo
+
     $this->Image('logo.png',15,6,30);
-    // nom en arabe
+
     $this->Image('header.png',70,6,110);
-    // Police Arial gras 11
+
     $this->SetFont('Arial','B',11);
-    // Décalage à droite
+
     $this->Cell(80);
-    // Titre
+
     $this->Cell(70,15,utf8_decode('Université des Sciences et de Technologie  Houari Boumediene'),0,0,'C');
-    // Saut de ligne
+
     $this->Ln(10);
-    //insérer une ligne 
+
     $this->Image('ligne.png',50,20,150);
 }
 
-// Pied de page
 function Footer()
 {
-    // Positionnement à 1 cm du bas
+ 
     $this->SetY(-15);    
 }
 }
 
-// Instanciation de la classe dérivée
+
 $pdf = new PDF();
 $pdf->AliasNbPages();
 
@@ -180,53 +179,53 @@ $pdf->AliasNbPages();
 foreach($results as $r){
     $pdf->AddPage();
     $pdf->Ln(7);
-    // Décalage à droite
+
     $pdf->Cell(80);
-    // Police Arial gras 15
+  
     $pdf->SetFont('Arial','',15);
-    // Titre
+  
     $pdf->Cell(70,0,utf8_decode("Faculté ".faculte($faculte)),0,0,'C');
     $pdf->Ln(7);
-    // Décalage à droite
+   
     $pdf->Cell(80);
-    // Police Arial gras 15
+  
     $pdf->SetFont('Arial','',15);
-    // Titre
+ 
     $pdf->Cell(70,0,utf8_decode("Département ".ucfirst (strtolower($filiere))),0,0,'C');
-    // Police Times 12
+
     $pdf->SetFont('Times','',12);
-    // Saut de ligne
+
     $pdf->Ln(9);
-    //insérer une ligne 
+
     $pdf->Image('ligne.png',10,38,190);
-    // Décalage à droite
+
     $pdf->Cell(120);
-    // Police Times gras 10
+
     $pdf->SetFont('Times','B',10);
-    // Titre
+ 
     $pdf->Cell(70,20,utf8_decode('Bab Ezzouar, '.jour(date('l'))." ".date('d')." ".mois(date('F'))." ".date('Y')),0,0,'C');
-    // Décalage à droite
+
     $pdf->Cell(-130);
-    // Police Times gras 14
+  
     $pdf->SetFont('Times','B',14);
-    // Titre
+
     $pdf->Cell(70,50,utf8_decode('ATTESTATION DE CLASSEMENT FINAL EN LICENCE'),0,0,'C');
 
-    // Saut de ligne
     $pdf->Ln(40);
-    // Police Times 12
+
     $pdf->SetFont('Times','',12);
     $h = 7;
     $retrait = "                     ";
     $pdf->SetLeftMargin(15);
     $pdf->Write($h, utf8_decode("            Je soussigné, Chef de Département Adjoint Chargé de la Scolarité et de la pédagogie au Département Informatique de l'Université USTHB, atteste que l'étudiant(e) : "));
     $pdf->Ln(12);
-    // Police Times 12
+
+
     $pdf->SetFont('Times','',12);
     $pdf->Write($h, $retrait . utf8_decode("Nom et Prénom :    "));
     $pdf->SetFont('', 'B',12);
     $pdf->Write($h, $r['NAME']."  ".$r['PNAME']."\n");
-    // Police Times 12
+
     $pdf->SetFont('Times','',12);
     $pdf->Write($h, $retrait . utf8_decode("Né(e) le :    "));
     $pdf->SetFont('', 'B',12);
@@ -275,43 +274,40 @@ foreach($results as $r){
     $pdf->Ln(12);
     $pdf->Write($h, utf8_decode("            Cette Attestation est délivrée à l'étudiant pour servir et faire valoir ce que de droit."));
     $pdf->Ln(12);
-    // Décalage à droite
+
     $pdf->Cell(120);
-    // Police Times 10
+
     $pdf->SetFont('Times','',10);
-    // Titre
+
     $pdf->Cell(70,20,utf8_decode("Le chef de Département Adjoint "));
     $pdf->Ln(7);
-    // Décalage à droite
+
     $pdf->Cell(112);
-    // Police Times 10
+
     $pdf->SetFont('Times','',10);
-    // Titre
+ 
     $pdf->Cell(70,20,utf8_decode("Chargé de la Scolarité et de la Pédagogies"));
-    //insérer une ligne 
+
     $pdf->Image('ligne.png',20,250,170);
     $pdf->ln(45);
-    // Décalage à droite
+  
     $pdf->Cell(82);
-    // Police Arial gras 15
+
     $pdf->SetFont('Arial','B',13);
     $pdf->Cell(20,0,utf8_decode("Département ".ucfirst (strtolower($filiere))."\n"),0,0,'C');
-    // Décalage à droite
+
     $pdf->Cell(-39);
-    // Police Times 10
+
     $pdf->SetFont('Times','',9);
     $pdf->Write(13, utf8_decode("B.P. 32 El-Alia, Bab-Ezzouar, Alger 16111 "));
     $pdf->ln(10);
-    // Décalage à droite
+
     $pdf->Cell(45);
-    // Police Times 9
+
     $pdf->SetFont('Times','',9);
     $pdf->Write(5, utf8_decode("Tél : 213 (0) 21 24 76 07 Poste 504 et 550  Fax :213 (0) 21 24 76 07"));
     $pdf->ln(4);
 }
 
-// for($i=1;$i<=40;$i++)
-//     // $pdf->Cell(0,10,'Impression de la ligne numéro '.$mat,0,1);
-$pdf->Output();
 unset($_SESSION);
 ?>

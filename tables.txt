@@ -1,0 +1,30 @@
+//creation de la table messages
+
+CREATE TABLE [dbo].[MESSAGES](
+	[NOM_PRENOM] [varchar](30) NOT NULL,
+	[EMAIL] [varchar](30) NOT NULL,
+	[OBJET] [varchar](30) NOT NULL,
+	[DATE] [date] NULL,
+	[MESSAGE] [varchar](300) NOT NULL
+) ON [PRIMARY]
+
+GO
+
+
+//creation de la table users
+
+
+CREATE TABLE [dbo].[UTILISATEURS](
+	[ID] [varchar](30) NOT NULL,
+	[NOM_PRENOM] [varchar](30) NOT NULL,
+	[EMAIL] [varchar](30) NOT NULL,
+	[MOT_PASSE] [varchar](255) NOT NULL,
+	[TEL] [int] NULL,
+	[FACULTE] [varchar](50) NOT NULL,
+	[TYPE] [varchar](30) NOT NULL,
+	[ENABLED] [varchar](30) NOT NULL
+) ON [PRIMARY]
+
+GO
+
+

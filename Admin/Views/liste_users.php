@@ -1,25 +1,5 @@
 <?php session_start(); ?>
-<?php if($_SESSION["ID"] != "") : ?>
-<?php
 
-function annee_scolaire_actuelle()
-{
-    $mois = date("m");//Le mois de la date actuelle
-    $annee_actuelle = date("Y");//L'année de la date actuelle
-    if ($mois >= 9 && $mois <= 12) {
-        $annee1 = $annee_actuelle;
-        $annee2 = $annee_actuelle + 1;
-    } else {
-        $annee1 = $annee_actuelle - 1;
-        $annee2 = $annee_actuelle;
-    }
-
-    $annee_scolaire_actuelle = $annee1 . "/" . $annee2;
-    return $annee_scolaire_actuelle;
-}
-
-$as=annee_scolaire_actuelle();
-?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -114,6 +94,3 @@ $as=annee_scolaire_actuelle();
 
 </html>
 
-<?php else : ?>
-  <?php header("location:../../index.php"); ?>
-<?php endif; ?>

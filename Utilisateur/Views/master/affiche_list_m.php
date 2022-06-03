@@ -27,7 +27,6 @@ include('traitement/filtre.php');
    $results1 = $getresults2->fetchAll(PDO::FETCH_BOTH);
 ?>
 
-<?php if($_SESSION["ID"] != "") : ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -129,6 +128,3 @@ include('traitement/filtre.php');
 
 </html>
 
-<?php else : ?>
-  <?php header("location:../../../index.php"); ?>
-<?php endif; ?>

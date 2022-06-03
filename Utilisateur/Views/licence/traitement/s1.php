@@ -1,6 +1,6 @@
 <?php
 include('config.php');
-// Crétaion de vue qui contient les résultat du 1er semestre
+
 
 $tsql4="IF NOT EXISTS(select * FROM sys.views where name = 's1')
 BEGIN    
@@ -31,9 +31,7 @@ BEGIN
   ')
 END";
 $getresults = $conn->prepare($tsql4)->execute();
-// Crétaion d'une table qui contient les résultats du 1er semestre max(sauv)
-// table pour pouvoir l'indexé et améliorer le temps de recherche
-// max(sauv) parce que une fois l'étudiant refait l'année on a plus besoin du sauv
+
 $tsql10="if not exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[s11]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
     create table [dbo].[s11] (
     [MAT] [varchar] (13) COLLATE Latin1_General_100_CI_AI_SC NOT NULL ,

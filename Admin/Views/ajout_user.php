@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php if($_SESSION["ID"] != "") : ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <?php 
@@ -131,9 +131,5 @@
 </body>
 
 </html>
-
-<?php else : ?>
-  <?php header("location:../../index.php"); ?>
-<?php endif; ?>
 
 

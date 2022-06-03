@@ -20,7 +20,7 @@ foreach($results3 as $r){
 
 ?>
 
-<?php if($_SESSION["ID"] != "") : ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -137,6 +137,4 @@ foreach($results3 as $r){
 </body>
 
 </html>
-<?php else : ?>
-  <?php header("location:../../../index.php"); ?>
-<?php endif; ?>
+

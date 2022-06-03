@@ -1,5 +1,4 @@
 <?php session_start(); ?>
-<?php if($_SESSION["ID"] != "") : ?>
 <!DOCTYPE html>
 <html lang="fr">
 
